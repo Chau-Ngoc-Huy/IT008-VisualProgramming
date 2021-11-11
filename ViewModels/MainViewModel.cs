@@ -9,6 +9,8 @@ using GoninDigital.Models;
 using GoninDigital.Views;
 using System.Windows.Input;
 using GoninDigital.Utils;
+using GoninDigital.Properties;
+using System.Reflection;
 
 namespace GoninDigital.ViewModels
 {
@@ -19,23 +21,23 @@ namespace GoninDigital.ViewModels
         public MainViewModel()
         {
             LoadedWidnowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
-                if (false)
+                if (Settings.Default.Username.ToString() != "")
                 {
                     var dashboardWindow = new DashBoard();
-                    if (true) //admin
+                    if (Settings.Default.isAdmin) //admin
                     {
-                        WindowManager.ChangeWindowContent(p, dashboardWindow, "", "GoninDigital.Views.AdminView");
+                        Settings.Default.isAdmin = false;
+                        _ = WindowManager.ChangeWindowContent(p, dashboardWindow, "", Resources.AdminControlPath);
                     }
                     else //user
                     {
-                        
-                        WindowManager.ChangeWindowContent(p, dashboardWindow, "", "GoninDigital.Views.DashBoard");
+                        _ = WindowManager.ChangeWindowContent(p, dashboardWindow, "", Resources.UserControlPath);
                     }
                 }
                 else //login
                 {
                     var loginWindow = new LoginViewModel(p);
-                    WindowManager.ChangeWindowContent(p, loginWindow, "", "GoninDigital.Views.LoginView");
+                    _ = WindowManager.ChangeWindowContent(p, loginWindow, "", Resources.LoginControlPath);
                 }
 
             }); 

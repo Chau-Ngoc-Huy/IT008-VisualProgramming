@@ -10,5 +10,7 @@
 
     <Grid >
         <TextBlock Text="Setting Page"/>
+        <Button Content="Log out" VerticalAlignment="center" HorizontalAlignment="Center" Height="200" Width="400"
+                Command="{Binding LogoutCommand}"/>
     </Grid>
 </Page>

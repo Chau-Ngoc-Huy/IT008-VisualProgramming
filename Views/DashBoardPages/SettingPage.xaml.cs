@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GoninDigital.ViewModels;
 
 namespace GoninDigital.Views.DashBoardPages
 {
@@ -23,6 +24,7 @@ namespace GoninDigital.Views.DashBoardPages
         public SettingPage()
         {
             InitializeComponent();
+            DataContext = new SettingPageViewModel(this);
         }
     }
 }

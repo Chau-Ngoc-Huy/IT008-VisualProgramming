@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using GoninDigital.Models;
 using GoninDigital.Utils;
 using GoninDigital.Views;
+using GoninDigital.Properties;
 
 namespace GoninDigital.ViewModels
 {
@@ -68,13 +69,17 @@ namespace GoninDigital.ViewModels
             if (isExist != null)
             {
                 var dashboardWindow = new DashBoard();
+                Settings.Default["Username"] = UserName;
+                Settings.Default["Password"] = passEncode;
                 if (isExist.TypeId == 1) //admin
                 {
-                    WindowManager.ChangeWindowContent(curWindow, dashboardWindow, "", "GoninDigital.Views.AdminView");
+                    Settings.Default["isAdmin"] = true;
+                    WindowManager.ChangeWindowContent(curWindow, dashboardWindow, "", Resources.AdminControlPath);
+                    
                 }
                 else //user
                 {
-                    WindowManager.ChangeWindowContent(curWindow, dashboardWindow, "", "GoninDigital.Views.DashBoard");
+                    WindowManager.ChangeWindowContent(curWindow, dashboardWindow, "", Resources.UserControlPath);
                 }
             }
             else
@@ -85,7 +90,7 @@ namespace GoninDigital.ViewModels
         private void RegisterCommandExcute()
         {
             var registerWindow = new RegisterViewModel(curWindow);
-            WindowManager.ChangeWindowContent(curWindow, registerWindow, "GoninDigital", "GoninDigital.Views.RegisterView");
+            WindowManager.ChangeWindowContent(curWindow, registerWindow, "", Resources.RegisterControlPath);
             if (registerWindow.CloseAction == null)
             {
                 registerWindow.CloseAction = () => curWindow.Close();
