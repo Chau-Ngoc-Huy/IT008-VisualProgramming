@@ -175,7 +175,7 @@ namespace GoninDigital.ViewModels
                             User new_user = new()
                             {
                                 UserName = UserName,
-                                Password = Encode.MD5Hash(Encode.Base64Encode(Password)),
+                                Password = Cryptography.MD5Hash(Cryptography.Base64Encode(Password)),
                                 TypeId = (int)_Usertype,
                                 FirstName = FirstName,
                                 LastName = LastName,
