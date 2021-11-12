@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GoninDigital.Models;
 using GoninDigital.Utils;
+using GoninDigital.Properties;
 
 namespace GoninDigital.ViewModels
 {
@@ -150,12 +151,12 @@ namespace GoninDigital.ViewModels
         void RegisterExecute()
         {
             if (!CanRegister)
-                MessageBox.Show("Chưa nhập đủ thông tin");
+                MessageBox.Show("Please fill all require field");
             else
             {
                 if (Password != RePassword)
                 {
-                    MessageBox.Show("Password va Confirm Password không khớp");
+                    MessageBox.Show("Password and Confirm password not match");
                 }
                 else
                 {
@@ -163,7 +164,7 @@ namespace GoninDigital.ViewModels
                     int checkEmail = DataProvider.Instance.Db.Users.Where(x => x.Email == Email).Count();
                     if (checkUsername > 0 || checkEmail > 0)
                     {
-                        _ = MessageBox.Show("Tên tài khoản hoặc email đã tồn tại");
+                        _ = MessageBox.Show("Username or email already exists!");
                     }
                     else
                     {
@@ -188,11 +189,11 @@ namespace GoninDigital.ViewModels
                             _ = DataProvider.Instance.Db.Users.Add(new_user);
                             _ = DataProvider.Instance.Db.SaveChanges();
 
-                            _ = MessageBox.Show("Đăng kí thành công");
+                            _ = MessageBox.Show("Register successfully");
                         }
                         catch
                         {
-                            _ = MessageBox.Show("Đăng kí không thành công!");
+                            _ = MessageBox.Show("Register unsuccessfully! Please check your information");
                         }
                     }
                 }
@@ -201,7 +202,7 @@ namespace GoninDigital.ViewModels
         void CancelExecute()
         {
             var loginWindow = new LoginViewModel(curWindow);
-            WindowManager.ChangeWindowContent(curWindow, loginWindow, "", "GoninDigital.Views.LoginView");
+            WindowManager.ChangeWindowContent(curWindow, loginWindow, "", Resources.LoginControlPath);
         }
     }
 }

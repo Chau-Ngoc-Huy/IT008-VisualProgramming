@@ -47,6 +47,18 @@ namespace GoninDigital.Properties {
             }
         }
         
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isAdmin {
+            get {
+                return ((bool)(this["isAdmin"]));
+            }
+            set {
+                this["isAdmin"] = value;
+            }
+        }
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
@@ -57,18 +69,6 @@ namespace GoninDigital.Properties {
         public string DBStr {
             get {
                 return ((string)(this["DBStr"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool isAdmin {
-            get {
-                return ((bool)(this["isAdmin"]));
-            }
-            set {
-                this["isAdmin"] = value;
             }
         }
     }
